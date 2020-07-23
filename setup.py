@@ -24,7 +24,7 @@ def find_version(*file_paths):
     raise RuntimeError("Unable to find version string.")
 
 
-VERSION = find_version('src', 'autogluon-contrib-nlp', '__init__.py')
+VERSION = find_version('src', 'autogluon_contrib_nlp', '__init__.py')
 
 requirements = [
     'numpy',
