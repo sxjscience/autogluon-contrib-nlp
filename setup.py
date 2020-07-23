@@ -34,6 +34,7 @@ requirements = [
     'flake8',
     'regex',
     'contextvars',
+    'contextvars',
     'pyarrow',
     'pandas'
 ]
