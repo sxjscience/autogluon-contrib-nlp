@@ -24,7 +24,7 @@ def find_version(*file_paths):
     raise RuntimeError("Unable to find version string.")
 
 
-VERSION = find_version('src', 'gluonnlp', '__init__.py')
+VERSION = find_version('src', 'autogluon-contrib-nlp', '__init__.py')
 
 requirements = [
     'numpy',
@@ -40,7 +40,7 @@ requirements = [
 
 setup(
     # Metadata
-    name='gluonnlp',
+    name='autogluon-contrib-nlp',
     version=VERSION,
     python_requires='>=3.6',
     author='GluonNLP Toolkit Contributors',
@@ -89,13 +89,6 @@ setup(
             'sphinx-autodoc-typehints',
             'nbsphinx',
             'flaky',
-        ],
-    },
-
-    entry_points={
-        'console_scripts': [
-            'nlp_data = gluonnlp.cli.data.__main__:cli_main',
-            'nlp_preprocess = gluonnlp.cli.preprocess.__main__:cli_main'
         ],
     },
 )
