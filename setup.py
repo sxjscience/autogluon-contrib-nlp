@@ -34,10 +34,12 @@ requirements = [
     'flake8',
     'regex',
     'contextvars',
-    'contextvars',
     'pyarrow',
     'pandas'
 ]
+
+MODEL_ZOO_CHECKSUM_PATH = os.path.join('models',
+                                       'model_zoo_checksums', '*.txt')
 
 setup(
     # Metadata
@@ -56,6 +58,7 @@ setup(
         'scripts',
     )),
     package_dir={"": "src"},
+    package_data={'': [os.path.join('models', 'model_zoo_checksums', '*.txt')]},
     zip_safe=True,
     include_package_data=True,
     install_requires=requirements,
