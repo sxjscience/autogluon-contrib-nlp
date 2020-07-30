@@ -189,7 +189,6 @@ def logging_config(folder: Optional[str] = None,
         logging.root.removeHandler(handler)
     logging.root.handlers = []
     logpath = os.path.join(folder, name + ".log")
-    print("All Logs will be saved to {}".format(logpath))
     logging.root.setLevel(level)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     logfile = logging.FileHandler(logpath)
@@ -202,6 +201,7 @@ def logging_config(folder: Optional[str] = None,
         logconsole.setLevel(console_level)
         logconsole.setFormatter(formatter)
         logging.root.addHandler(logconsole)
+    logging.info("All Logs will be saved to {}".format(logpath))
     return folder
 
 
