@@ -574,26 +574,6 @@ def num_mp_workers(max_worker=4):
     return min(mp.cpu_count(), max_worker)
 
 
-def get_mxnet_visible_gpus():
-    """Get the number of GPUs that are visible to MXNet.
-
-    Returns
-    -------
-    ctx_l
-        The ctx list
-    """
-    import mxnet as mx
-    gpu_count = 0
-    while True:
-        try:
-            arr = mx.np.array(1.0, ctx=mx.gpu(gpu_count))
-            arr.asnumpy()
-            gpu_count += 1
-        except Exception:
-            break
-    return [mx.gpu(i) for i in range(gpu_count)]
-
-
 def get_mxnet_available_ctx():
     """
 
@@ -603,9 +583,9 @@ def get_mxnet_available_ctx():
         Get the available contexts
     """
     import mxnet as mx
-    gpu_ctx_l = get_mxnet_visible_gpus()
-    if len(gpu_ctx_l) == 0:
+    num_gpus = mx.context.num_gpus()
+    if num_gpus == 0:
         ctx_l = [mx.cpu()]
     else:
-        ctx_l = gpu_ctx_l
+        ctx_l = [mx.gpu(i) for i in range(num_gpus)]
     return ctx_l
