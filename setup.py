@@ -26,6 +26,24 @@ def find_version(*file_paths):
 
 VERSION = find_version('src', 'autogluon_contrib_nlp', '__init__.py')
 
+"""
+To release a new stable version on PyPi, simply tag the release on github, 
+and the Github CI will automatically publish 
+a new stable version to PyPi using the configurations in 
+.github/workflows/pypi_release.yml . 
+You need to increase the version number after stable release, 
+so that the nightly pypi can work properly.
+"""
+try:
+    if not os.getenv('RELEASE'):
+        from datetime import date
+        today = date.today()
+        day = today.strftime("b%Y%m%d")
+        VERSION += day
+except Exception:
+    pass
+
+
 requirements = [
     'numpy',
     'sacremoses>=0.0.38',
