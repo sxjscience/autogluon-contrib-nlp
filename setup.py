@@ -53,6 +53,9 @@ requirements = [
     'regex',
     'contextvars',
     'pyarrow',
+    'tokenizers>=0.7.0',
+    'protobuf',
+    'sentencepiece',
     'pandas'
 ]
 
@@ -84,9 +87,6 @@ setup(
         'extras': [
             'boto3',
             'tqdm',
-            'protobuf',
-            'tokenizers>=0.7.0',
-            'sentencepiece',
             'jieba',
             'subword_nmt',
             'youtokentome>=1.0.6',
