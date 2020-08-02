@@ -178,7 +178,7 @@ def logging_config(folder: Optional[str] = None,
                    name: Optional[str] = None,
                    logger: Optional[Logger] = None,
                    level: int = logging.INFO,
-                   console_level: int = logging.INFO,
+                   console_level: Optional[int] = None,
                    console: bool = True) -> str:
     """Config the logging module"""
     if name is None:
@@ -197,11 +197,13 @@ def logging_config(folder: Optional[str] = None,
     logger.setLevel(level)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     logfile = logging.FileHandler(logpath)
-    logfile.setLevel(level)
+    logfile.setLevel(logging.DEBUG)
     logfile.setFormatter(formatter)
     logger.addHandler(logfile)
     if console:
         # Initialze the console logging
+        if console_level is None:
+            console_level = level
         logconsole = logging.StreamHandler()
         logconsole.setLevel(console_level)
         logconsole.setFormatter(formatter)
