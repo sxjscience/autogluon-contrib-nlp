@@ -12,6 +12,7 @@ import hashlib
 import requests
 import itertools
 import random
+from logging import Logger
 try:
     import tqdm
 except ImportError:
@@ -172,8 +173,10 @@ def naming_convention(file_dir, file_name):
         file_sufix=file_sufix)
     return new_name, long_hash
 
+
 def logging_config(folder: Optional[str] = None,
                    name: Optional[str] = None,
+                   logger: Optional[Logger] = None,
                    level: int = logging.INFO,
                    console_level: int = logging.INFO,
                    console: bool = True) -> str:
@@ -184,24 +187,26 @@ def logging_config(folder: Optional[str] = None,
         folder = os.path.join(os.getcwd(), name)
     if not os.path.exists(folder):
         os.makedirs(folder, exist_ok=True)
+    if logger is None:
+        logger = logging.root
     # Remove all the current handlers
-    for handler in logging.root.handlers:
-        logging.root.removeHandler(handler)
-    logging.root.handlers = []
+    for handler in logger.handlers:
+        logger.removeHandler(handler)
+    logger.handlers = []
     logpath = os.path.join(folder, name + ".log")
-    logging.root.setLevel(level)
+    logger.setLevel(level)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     logfile = logging.FileHandler(logpath)
     logfile.setLevel(level)
     logfile.setFormatter(formatter)
-    logging.root.addHandler(logfile)
+    logger.addHandler(logfile)
     if console:
         # Initialze the console logging
         logconsole = logging.StreamHandler()
         logconsole.setLevel(console_level)
         logconsole.setFormatter(formatter)
-        logging.root.addHandler(logconsole)
-    logging.info("All Logs will be saved to {}".format(logpath))
+        logger.addHandler(logconsole)
+    logger.info("All Logs will be saved to {}".format(logpath))
     return folder
 
 
