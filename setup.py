@@ -72,7 +72,7 @@ setup(
     description='MXNet GluonNLP Toolkit (DeepNumpy Version)',
     long_description_content_type='text/markdown',
     license='Apache-2.0',
-
+    url='https://github.com/sxjscience/autogluon-contrib-nlp',
     # Package info
     packages=find_packages(where="src", exclude=(
         'tests',
