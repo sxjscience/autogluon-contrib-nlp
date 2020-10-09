@@ -53,7 +53,7 @@ requirements = [
     'regex',
     'contextvars',
     'pyarrow',
-    'tokenizers>=0.7.0',
+    'tokenizers>=0.7.0,<0.9.0',
     'protobuf',
     'sentencepiece',
     'pandas'
