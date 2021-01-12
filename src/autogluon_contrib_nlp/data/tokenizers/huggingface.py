@@ -643,12 +643,7 @@ class HuggingFaceWordPieceTokenizer(LegacyHuggingFaceTokenizer):
                                       'mask_token': self._mask_token}
             self._vocab = Vocab(all_tokens, unk_token=self._unk_token, **default_special_tokens)
             all_tokens = self._vocab.all_tokens
-        # for safety, also use temp file when using wordpiece vocab file
-        # for situation that original all_tokens not cotain special tokens
-        # (vocab file of BERT do not contain all special tokens)
-        # temp_hf_vocab_file = str(uuid4()) + '.hf_vocab'
-        # with open(temp_hf_vocab_file, 'w', encoding='utf-8') as ftv:
-        #     ftv.write('\n'.join(all_tokens))
+
         hf_wordpiece_vocab = {ele: i for i, ele in enumerate(all_tokens)}
         self._vocab.mask_token_id = self._vocab.mask_id
         assert [self._unk_token, self._sep_token, self._cls_token, self._pad_token,
@@ -666,7 +661,6 @@ class HuggingFaceWordPieceTokenizer(LegacyHuggingFaceTokenizer):
             handle_chinese_chars=self._handle_chinese_chars,
             strip_accents=self._strip_accents, lowercase=self._lowercase,
             wordpieces_prefix=self._wordpieces_prefix)
-        # os.remove(temp_hf_vocab_file)
 
     def __repr__(self):
         ret = '{}(\n' \
