@@ -649,7 +649,7 @@ class HuggingFaceWordPieceTokenizer(LegacyHuggingFaceTokenizer):
         # temp_hf_vocab_file = str(uuid4()) + '.hf_vocab'
         # with open(temp_hf_vocab_file, 'w', encoding='utf-8') as ftv:
         #     ftv.write('\n'.join(all_tokens))
-        hf_wordpiece_vocab = {i: ele for i, ele in enumerate(all_tokens)}
+        hf_wordpiece_vocab = {ele: i for i, ele in enumerate(all_tokens)}
         self._vocab.mask_token_id = self._vocab.mask_id
         assert [self._unk_token, self._sep_token, self._cls_token, self._pad_token,
                 self._mask_token] == \
