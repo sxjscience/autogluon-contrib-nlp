@@ -647,7 +647,7 @@ def get_pretrained_bert(model_name: str = 'google_en_cased_bert_base',
                                          sha1_hash=FILE_STATS[mlm_params_path])
     else:
         local_mlm_params_path = None
-    do_lower = True if 'lowercase' in PRETRAINED_URL[model_name]\
+    lowercase = True if 'lowercase' in PRETRAINED_URL[model_name]\
                        and PRETRAINED_URL[model_name]['lowercase'] else False
     # TODO(sxjscience) Move do_lower to assets.
     tokenizer = HuggingFaceWordPieceTokenizer(
@@ -657,7 +657,7 @@ def get_pretrained_bert(model_name: str = 'google_en_cased_bert_base',
                     cls_token='[CLS]',
                     sep_token='[SEP]',
                     mask_token='[MASK]',
-                    lowercase=do_lower)
+                    lowercase=lowercase)
     cfg = BertModel.get_cfg().clone_merge(local_paths['cfg'])
     return cfg, tokenizer, local_params_path, local_mlm_params_path
 

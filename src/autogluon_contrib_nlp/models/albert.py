@@ -660,7 +660,7 @@ def get_pretrained_albert(model_name: str = 'google_albert_base_v2',
     # TODO(sxjscience) Move do_lower to assets.
     tokenizer = SentencepieceTokenizer(local_paths['spm_model'],
                                        vocab=local_paths['vocab'],
-                                       do_lower=True)
+                                       lowercase=True)
     cfg = AlbertModel.get_cfg().clone_merge(local_paths['cfg'])
     return cfg, tokenizer, local_params_path, local_mlm_params_path
 
