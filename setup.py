@@ -55,7 +55,7 @@ requirements = [
     'pyarrow',
     'tokenizers==0.9.4',
     'protobuf',
-    'sentencepiece',
+    'sentencepiece==0.1.95',
     'pandas'
 ]
 
