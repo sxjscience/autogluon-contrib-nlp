@@ -561,7 +561,7 @@ class HuggingFaceWordPieceTokenizer(LegacyHuggingFaceTokenizer):
                  pad_token: str = Vocab.PAD_TOKEN,
                  mask_token: str = Vocab.MASK_TOKEN,
                  clean_text: bool = True, handle_chinese_chars: bool = True,
-                 strip_accents: bool = False, lowercase: bool = False,
+                 strip_accents: bool = None, lowercase: bool = False,
                  wordpieces_prefix: str = "##"):
         super().__init__()
         self._vocab_file = vocab_file
