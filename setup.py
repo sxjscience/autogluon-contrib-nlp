@@ -4,6 +4,7 @@ import os
 import re
 import shutil
 import sys
+import setuptools
 from setuptools import setup, find_packages
 
 
