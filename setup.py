@@ -4,6 +4,7 @@ import os
 import re
 import shutil
 import sys
+import setuptools
 from setuptools import setup, find_packages
 
 
@@ -53,7 +54,7 @@ requirements = [
     'regex',
     'contextvars',
     'pyarrow',
-    'tokenizers==0.9.4',
+    'tokenizers>=0.9.4',
     'protobuf',
     'sentencepiece==0.1.95',
     'pandas'
