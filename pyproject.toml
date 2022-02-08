@@ -1,0 +1,16 @@
+[build-system]
+requires = [
+    'numpy',
+    'sacremoses>=0.0.38',
+    'yacs>=0.1.6',
+    'sacrebleu',
+    'flake8',
+    'regex',
+    'contextvars',
+    'pyarrow',
+    'tokenizers>=0.9.4',
+    'protobuf',
+    'sentencepiece==0.1.95',
+    'pandas'
+]
+build-backend = "setuptools.build_meta"
