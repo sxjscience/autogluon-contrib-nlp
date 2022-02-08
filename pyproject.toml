@@ -1,5 +1,7 @@
 [build-system]
 requires = [
+    'setuptools>=42',
+    'wheel',
     'numpy',
     'sacremoses>=0.0.38',
     'yacs>=0.1.6',
